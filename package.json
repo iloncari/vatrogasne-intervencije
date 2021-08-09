@@ -1,7 +1,13 @@
 {
   "dependencies": {
+    "@polymer/app-layout": "3.1.0",
+    "@polymer/iron-collapse": "3.0.1",
     "@polymer/iron-icon": "3.0.1",
     "@polymer/iron-list": "3.1.0",
+    "@polymer/iron-overlay-behavior": "^3.0.3",
+    "@polymer/paper-badge": "3.0.1",
+    "@polymer/paper-ripple": "3.0.2",
+    "@polymer/paper-tabs": "3.1.0",
     "@polymer/polymer": "3.2.0",
     "@vaadin/vaadin-accordion": "1.2.0",
     "@vaadin/vaadin-app-layout": "2.2.0",
@@ -71,8 +77,14 @@
   "name": "no-name",
   "vaadin": {
     "dependencies": {
+      "@polymer/app-layout": "3.1.0",
+      "@polymer/iron-collapse": "3.0.1",
       "@polymer/iron-icon": "3.0.1",
       "@polymer/iron-list": "3.1.0",
+      "@polymer/iron-overlay-behavior": "^3.0.3",
+      "@polymer/paper-badge": "3.0.1",
+      "@polymer/paper-ripple": "3.0.2",
+      "@polymer/paper-tabs": "3.1.0",
       "@polymer/polymer": "3.2.0",
       "@vaadin/vaadin-accordion": "1.2.0",
       "@vaadin/vaadin-app-layout": "2.2.0",
@@ -138,6 +150,6 @@
       "webpack-dev-server": "3.11.0",
       "webpack-merge": "4.2.2"
     },
-    "hash": "7821783dbe9f953d0cb772dbb63c27d2824689bc59bc683dff8c7cee4947fe8c"
+    "hash": "bdbd81ff760d08df67ea822cfebe85dfe00d7ad2349614c68f83d59bc8a4dd6a"
   }
 }
