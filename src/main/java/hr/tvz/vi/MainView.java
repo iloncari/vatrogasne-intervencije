@@ -24,6 +24,9 @@ import hr.tvz.vi.util.Utils;
 import hr.tvz.vi.view.MainAppLayout;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A sample Vaadin view class.
@@ -37,12 +40,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * A new instance of this class is created for every new user and every
  * browser tab/window.
  */
-@Route(layout = MainAppLayout.class)
+@Slf4j
+@Route(value = "main", layout = MainAppLayout.class)
 @PWA(name = "Vaadin Application",
   shortName = "Vaadin App",
   description = "This is an example Vaadin application.",
   enableInstallPrompt = false)
 @CssImport("./styles/shared-styles.css")
+@Component
 public class MainView extends VerticalLayout {
 
   /** The Constant serialVersionUID. */
@@ -95,6 +100,7 @@ public class MainView extends VerticalLayout {
     addClassName("centered-content");
 
     add(textField, button);
+
   }
 
 }

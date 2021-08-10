@@ -1,7 +1,6 @@
 /*
  * AccessControlImpl AccessControlImpl.java.
  *
- * Copyright (c) 2018 OptimIT d.o.o.. All rights reserved.
  */
 package hr.tvz.vi.auth;
 
@@ -9,7 +8,7 @@ import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinService;
 
 import hr.tvz.vi.orm.Person;
-import hr.tvz.vi.orm.PersonRepository;
+import hr.tvz.vi.service.AuthentificationService;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,6 +17,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * The Class AccessControlImpl.
+ *
+ * @author Igor Lončarić (iloncari2@tvz.hr)
+ * @since 8:19:36 PM Aug 10, 2021
+ */
 @Slf4j
 public class AccessControlImpl implements AccessControl {
 
@@ -33,16 +38,23 @@ public class AccessControlImpl implements AccessControl {
   /**
    * Gets the single instance of AccessControlImpl.
    *
+   * @param authService the auth service
    * @return single instance of AccessControlImpl
    */
-  static synchronized AccessControl getInstance(PersonRepository personRepository) {
-    return new AccessControlImpl(personRepository);
+  static synchronized AccessControl getInstance(AuthentificationService authService) {
+    return new AccessControlImpl(authService);
   }
 
-  PersonRepository personRepository;
+  /** The authentification service. */
+  private final AuthentificationService authentificationService;
 
-  public AccessControlImpl(PersonRepository personRepo) {
-    this.personRepository = personRepo;
+  /**
+   * Instantiates a new access control impl.
+   *
+   * @param authService the auth service
+   */
+  public AccessControlImpl(AuthentificationService authService) {
+    this.authentificationService = authService;
   }
 
   /**
@@ -118,12 +130,11 @@ public class AccessControlImpl implements AccessControl {
    */
   @Override
   public CurrentUser signIn(String username, String password) {
-    if (StringUtils.isAnyBlank(username, password) || personRepository == null) {
+    if (StringUtils.isAnyBlank(username, password)) {
       return null;
     }
 
-    // user hash
-    final Person person = this.personRepository.findByUsernameAndHashedPassword(username, password);
+    final Person person = authentificationService.login(username, password);
     if (person == null) {
       return null;
     }

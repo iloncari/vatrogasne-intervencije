@@ -14,31 +14,51 @@ import hr.tvz.vi.auth.AccessControl;
 import hr.tvz.vi.auth.AccessControlFactory;
 import hr.tvz.vi.auth.AccessControlImpl;
 import hr.tvz.vi.auth.CurrentUser;
-import hr.tvz.vi.orm.PersonRepository;
+import hr.tvz.vi.service.AuthentificationService;
 import hr.tvz.vi.view.LoginView;
 import hr.tvz.vi.view.RequestAccessView;
+import hr.tvz.vi.view.TestView;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.codecamp.vaadin.serviceref.ServiceRef;
+
+/**
+ * The listener interface for receiving init events.
+ * The class that is interested in processing a init
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addInitListener<code> method. When
+ * the init event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see InitEvent
+ */
 @Service
 public class InitListener implements VaadinServiceInitListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -5853480673151872556L;
 
-  private final Logger log = LoggerFactory.getLogger(InitListener.class);
-
+  /** The auth service ref. */
   @Autowired
-  PersonRepository partyRepository;
+  private ServiceRef<AuthentificationService> authServiceRef;
 
+  /** The access control. */
+  private AccessControl accessControl;
+
+  /**
+   * Service init.
+   *
+   * @param event the event
+   */
   @Override
   public void serviceInit(ServiceInitEvent event) {
-    final AccessControl accessControl = AccessControlFactory.of().getAccessControl(partyRepository);
+    accessControl = AccessControlFactory.of().getAccessControl(authServiceRef == null ? null : authServiceRef.get());
+
     event.getSource().addSessionInitListener(sessionInit -> {
       sessionInit.getSession().setLocale(sessionInit.getSource().getInstantiator().getI18NProvider().getProvidedLocales().get(0));
     });
@@ -55,13 +75,12 @@ public class InitListener implements VaadinServiceInitListener {
 
       uiEvent.getUI().addBeforeLeaveListener(beforeLeaveEvent -> {
         if (!accessControl.isUserSignedIn() && !beforeLeaveEvent.getNavigationTarget().equals(LoginView.class)
-          && !beforeLeaveEvent.getNavigationTarget().equals(RequestAccessView.class)) {
+          && !beforeLeaveEvent.getNavigationTarget().equals(RequestAccessView.class) && !beforeLeaveEvent.getNavigationTarget().equals(TestView.class)) {
           beforeLeaveEvent.forwardTo(LoginView.class);
           return;
         }
       });
 
     });
-
   }
 }

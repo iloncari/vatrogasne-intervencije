@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class CurrentUser {
 
   @Getter
@@ -58,8 +60,10 @@ public class CurrentUser {
    * Inits the parent organization.
    */
   private void initParentOrganization() {
-    this.parentOrganization = activeOrganization.getOrganization().getParentId() == null || organizationRepository == null ? null
-      : organizationRepository.findById(Long.valueOf(activeOrganization.getOrganization().getParentId())).orElse(null);
+    parentOrganization = person.getOrgList().stream().map(PersonOrganization::getOrganization)
+      .filter(organization -> null != activeOrganization.getOrganization().getParentId()
+        && activeOrganization.getOrganization().getParentId() == organization.getId().intValue())
+      .findAny().orElse(null);
   }
 
   /**

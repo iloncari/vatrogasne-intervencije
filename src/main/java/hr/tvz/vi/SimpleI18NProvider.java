@@ -86,8 +86,8 @@ public class SimpleI18NProvider implements I18NProvider {
     try {
       value = bundle.getString(key);
     } catch (final MissingResourceException e) {
-      LoggerFactory.getLogger(SimpleI18NProvider.class.getName())
-        .warn("Missing resource", e);
+      // LoggerFactory.getLogger(SimpleI18NProvider.class.getName())
+      // .warn("Missing resource", e);
       return "!" + locale.getLanguage() + ": " + key;
     }
     if (params.length > 0) {

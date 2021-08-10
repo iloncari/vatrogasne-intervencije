@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -47,7 +48,8 @@ public class Person {
   @Enumerated(EnumType.STRING)
   private Professions profession;
 
-  @OneToMany(fetch = FetchType.EAGER)
+  @ToString.Exclude
+  @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
   private Set<PersonOrganization> orgList;
 
 }

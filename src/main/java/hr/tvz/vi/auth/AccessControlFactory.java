@@ -1,15 +1,16 @@
 /*
  * AccessControlFactory AccessControlFactory.java.
  *
- * Copyright (c) 2018 OptimIT d.o.o.. All rights reserved.
  */
-
 package hr.tvz.vi.auth;
 
-import hr.tvz.vi.orm.PersonRepository;
+import hr.tvz.vi.service.AuthentificationService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * A factory for creating AccessControl objects.
+ */
 @RequiredArgsConstructor(staticName = "of")
 public class AccessControlFactory {
 
@@ -18,13 +19,13 @@ public class AccessControlFactory {
   /**
    * Creates a new AccessControl object.
    *
+   * @param authentificationService the authentification service
    * @return the access control
    */
-  public AccessControl getAccessControl(PersonRepository pr) {
+  public AccessControl getAccessControl(AuthentificationService authentificationService) {
     if (null == accessControl) {
-      accessControl = AccessControlImpl.getInstance(pr);
+      accessControl = AccessControlImpl.getInstance(authentificationService);
     }
-
     return accessControl;
   }
 }

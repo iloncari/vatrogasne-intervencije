@@ -185,7 +185,14 @@ public final class Constants {
     /** The width 75. */
     WIDTH_75("width_75"),
 
-    WIDTH_50("width_50");
+    WIDTH_50("width_50"),
+    THEME_PRIMARY_ERROR("primary error"),
+
+    /** The theme primary success. */
+    THEME_PRIMARY_SUCCESS("primary success"),
+
+    /** The color red. */
+    COLOR_RED("red_text");
 
     /** The name. */
     private final String name;
@@ -211,6 +218,7 @@ public final class Constants {
 
     SPECTATOR("spectator");
 
+    @Getter
     private final String name;
   }
 

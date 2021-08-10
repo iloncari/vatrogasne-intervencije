@@ -21,11 +21,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table
+@EqualsAndHashCode(exclude = "childs")
 public class Organization {
 
   @Id
