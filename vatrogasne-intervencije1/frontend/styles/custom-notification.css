@@ -1,0 +1,15 @@
+:host([theme~="success"]) [part="overlay"] {
+	background-color: #00c06d;
+}
+
+:host([theme~="error"]) [part="overlay"] {
+	background-color: #c00032;
+}
+
+:host([theme~="success"]) [part="content"] {
+	background-color: #00c06d;
+}
+
+:host([theme~="error"]) [part="content"] {
+	font-weight: 600;
+}

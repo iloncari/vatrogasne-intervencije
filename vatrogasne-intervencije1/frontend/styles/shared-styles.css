@@ -1,0 +1,68 @@
+/*
+   CSS styling examples for the Vaadin app.
+   Visit https://vaadin.com/docs/flow/theme/theming-overview.html and
+   https://vaadin.com/themes/lumo for more information.
+*/
+
+/* Example: CSS class name to center align the content . */
+.centered-content {
+  margin: 0 auto;
+  max-width: 250px;
+}
+
+.fire-gradient {
+	background: rgb(255,89,89);
+	background: linear-gradient(162deg, rgba(255,89,89,1) 0%, rgba(238,155,30,1) 38%, rgba(255,249,108,1) 71%); 
+}
+
+.login_content {
+	background-color: white;
+    align-self: center;
+    width: 280px;
+    padding: 20px;
+    border-radius: 9px;
+    box-shadow: 0 0 12px 0 rgba(60, 95, 175, 0.1);
+    margin: 20px;
+}
+
+.register_content {
+	background-color: white;
+    align-self: center;
+    padding: 20px;
+    border-radius: 9px;
+    box-shadow: 0 0 12px 0 rgba(60, 95, 175, 0.1);
+    margin: 20px;
+}
+
+.logo_center {
+	width:200px;
+	margin: 0 auto;
+}
+
+.button_blue{
+	color:white;
+	margin: 10px 0;
+	background-color:blue;
+}
+
+.width_100{
+	width:100%;
+}
+
+.width_75{
+	width:75%;
+	
+}
+
+.width_25{
+	width:25%;
+}
+
+.width_50{
+	width:50%;
+}
+
+.red_text{
+	color:red;
+	text-align:center;
+}

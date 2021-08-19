@@ -1,0 +1,1 @@
+web: java -jar target/vatrogasne-intervencije-1.0-SNAPSHOT.jar $PORT
